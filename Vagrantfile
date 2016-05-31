@@ -16,19 +16,7 @@ Vagrant.configure(2) do |vagrant|
 
   # Docker Swarm Controller
     vagrant.vm.define "dswarm" do |dswarm|
-      dswarm.vm.box = "coreos-stable"
-      dswarm.vm.box_url = "https://storage.googleapis.com/stable.release.core-os.net/amd64-usr/current/coreos_production_vagrant.json"
-
-      # Disable Guest Additions Installing on CoreOS
-          dswarm.vm.provider :virtualbox do |v|
-            # On VirtualBox, we don't have guest additions or a functional vboxsf
-            # in CoreOS, so tell Vagrant that so it can be smarter.
-            v.check_guest_additions = false
-            v.functional_vboxsf     = false
-          end
-          if Vagrant.has_plugin?("vagrant-vbguest") then
-            dswarm.vbguest.auto_update = false
-          end
+      dswarm.vm.box = "centos/atomic-host"
 
       # Add to Network
       dswarm.vm.network "private_network", ip: "10.100.1.10"

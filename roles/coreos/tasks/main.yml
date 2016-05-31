@@ -1,3 +1,0 @@
----
-- name: updating coreos
-  shell: update_engine_client -check_for_update
