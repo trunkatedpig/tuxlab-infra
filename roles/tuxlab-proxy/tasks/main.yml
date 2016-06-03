@@ -1,0 +1,11 @@
+---
+
+- name: pull alpine container images with redbird
+  become: yes
+  become_method: sudo
+  git: repo=https://github.com/learnlinux/docker-alpine-nodejs.git dest=~/docker-proxy
+
+- name: build tuxlab_proxy image
+  docker_image:
+    path: ~/docker-proxy
+    name: tuxlab_proxy
